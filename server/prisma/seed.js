@@ -4,8 +4,8 @@ const prisma = new PrismaClient()
 async function seed() {
     await prisma.post.deleteMany()
     await prisma.user.deleteMany()
-    const kyle = await prisma.user.create({ data: { name: "Kyle" } })
-    const sally = await prisma.user.create({ data: { name: "Sally" } })
+    const jason = await prisma.user.create({ data: { name: "Jason" } })
+    const lexi = await prisma.user.create({ data: { name: "Lexi" } })
 
     const post1 = await prisma.post.create({
         data: {
@@ -23,7 +23,7 @@ async function seed() {
     const comment1 = await prisma.comment.create({
         data: {
             message: "I am a root comment",
-            userId: kyle.id,
+            userId: jason.id,
             postId: post1.id,
         },
     })
@@ -32,7 +32,7 @@ async function seed() {
         data: {
             parentId: comment1.id,
             message: "I am a nested comment",
-            userId: sally.id,
+            userId: lexi.id,
             postId: post1.id,
         },
     })
@@ -40,7 +40,7 @@ async function seed() {
     const comment3 = await prisma.comment.create({
         data: {
             message: "I am another root comment",
-            userId: sally.id,
+            userId: lexi.id,
             postId: post1.id,
         },
     })
