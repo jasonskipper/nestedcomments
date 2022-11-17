@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom"
 import { useAsync } from "../hooks/useAsync"
 import { getPost } from "../services/posts"
 
+// this file contains all info for post & all comments on post, ability to add/delete/nest/etc. 
+
 const Context = React.createContext()
 
 export function usePost() {
@@ -16,7 +18,9 @@ export function PostProvider({ children }) {
     const commentsByParentId = useMemo(() => {
         const group = {}
         comments.forEach(comment => {
-            group[comment.parentId] ||= []
+            if(!group[comment.parentId]) {
+                group[comment.parentId] = []    
+            }
             group[comment.parentId].push(comment)
         })
         return group

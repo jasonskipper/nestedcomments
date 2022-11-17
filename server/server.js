@@ -39,6 +39,16 @@ const COMMENT_SELECT_FIELDS = {
     }
 }
 
+// helper function to handle errors 
+// if there is an error in prisma-related code, it will handle that error  
+async function commitToDb(promise) {
+    const [error, data] = await app.to(promise) // in fastify from the sensible library  
+    if (error) return app.httpErrors.internalServerError(error.message)
+    return data
+}
+
+app.listen({ port: process.env.PORT })
+
 app.get("/posts", async(req, res) => {
     return await commitToDb(
         prisma.post.findMany({
@@ -54,8 +64,8 @@ app.get("/posts/:id", async(req, res) => {
         prisma.post.findUnique({
             where: { id: req.params.id },
             select: {
-                body: true,
                 title: true,
+                body: true,
                 comments: {
                     orderBy: {
                         createdAt: "desc"
@@ -170,12 +180,3 @@ app.post("/posts/:postId/comments/:commentId/toggleLike", async (req, res) => {
     }
 
 })
-
-// helper function to handle errors 
-async function commitToDb(promise) {
-    const [error, data] = await app.to(promise)
-    if (error) return app.httpErrors.internalServerError(error.message)
-    return data
-}
-
-app.listen({ port: process.env.PORT })
