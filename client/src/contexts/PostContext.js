@@ -3,8 +3,6 @@ import { useParams } from "react-router-dom"
 import { useAsync } from "../hooks/useAsync"
 import { getPost } from "../services/posts"
 
-// this file contains all info for post & all comments on post, ability to add/delete/nest/etc. 
-
 const Context = React.createContext()
 
 export function usePost() {
@@ -13,7 +11,7 @@ export function usePost() {
 
 export function PostProvider({ children }) {
     const { id } = useParams()
-    const { loading, error, value: post } = useAsync(() => getPost(id), [id]) // take in function which gets post with given id, every time id changes, update this function  
+    const { loading, error, value: post } = useAsync(() => getPost(id), [id])
     const [comments, setComments] = useState([]) 
     const commentsByParentId = useMemo(() => {
         const group = {}

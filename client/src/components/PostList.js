@@ -3,13 +3,11 @@ import { useAsync } from "../hooks/useAsync"
 import { getPosts } from "../services/posts"
 
 export function PostList() {
-    const { loading, error, value: posts } = useAsync(getPosts) // useAsync automatically runs code for us 
+    const { loading, error, value: posts } = useAsync(getPosts)
     if(loading) return <h1>Loading</h1>
     if(error) return <h1 className="error-msg">{error}</h1>
-    // loop through posts 
     return posts.map(post => {
         return (
-            // unique id 
             <h1 key={post.id}>
                 <Link to={`/posts/${post.id}`}>{post.title}</Link>
             </h1>

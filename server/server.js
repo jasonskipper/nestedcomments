@@ -39,10 +39,8 @@ const COMMENT_SELECT_FIELDS = {
     }
 }
 
-// helper function to handle errors 
-// if there is an error in prisma-related code, it will handle that error  
 async function commitToDb(promise) {
-    const [error, data] = await app.to(promise) // in fastify from the sensible library  
+    const [error, data] = await app.to(promise)
     if (error) return app.httpErrors.internalServerError(error.message)
     return data
 }
@@ -166,7 +164,7 @@ app.post("/posts/:postId/comments/:commentId/toggleLike", async (req, res) => {
     }
     
     const like = await prisma.like.findUnique({
-        where: { userId_commentId: data } // joint id in prisma 
+        where: { userId_commentId: data } 
     })
 
     if(like == null) {

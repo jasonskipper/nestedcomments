@@ -1,30 +1,11 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-
-// specifies what we generate our prisma code into 
-// so take all the prisma code, and convert it using the 
-// prisma-client-js formatter 
-// can have multiple generators 
-
 generator client {
-  // when you run the migrate command, 
-  // this prisma client is updated 
-  // prisma client: all code for interacting with db 
   provider = "prisma-client-js"
 }
 
-
-// can only have one datasource because prisma is directly connecting to db 
-// determines how prisma connects to your dattabase  
 datasource db {
-  provider = "postgresql" // where data is coming from 
+  provider = "postgresql"
   url      = env("DATABASE_URL") 
 }
-
-// models represent tables in database 
-// composed of different fields 
-// field : name type type_modifier attribute 
 
 model User {
   id       String @id @default(uuid())
@@ -34,50 +15,35 @@ model User {
 }
 
 model Post {
-  id        String @id @default(uuid()) // need a random uuid 
+  id        String @id @default(uuid()) 
   title     String
   body      String
   comments  Comment[]
 }
 
-model Comment { // contains all the complexity of our application 
+model Comment { 
   id      String @id @default(uuid())
   message String
 
-  createdAt DateTime @default(now()) // by default, when we create a comment, createdAt will be set to the current date & time 
-  updatedAt DateTime @updatedAt // automatically updates this timestamp every time we make changes to our comment; sets every time we change our model 
+  createdAt DateTime @default(now()) 
+  updatedAt DateTime @updatedAt 
   
   userId String
   postId String
 
-  // required for getting nesting to work  
-  parent Comment? @relation("ParentChild", fields: [parentId], references: [id], onDelete: Cascade) // optional because root comments don't have a parent  
+  parent Comment? @relation("ParentChild", fields: [parentId], references: [id], onDelete: Cascade) 
   parentId String? 
 
   likes Like[]
-  // user: any time we delete the user that this points to, delete all the comments that user had as well 
-  user   User @relation(fields: [userId], references: [id], onDelete: Cascade) // prisma automatically generates first part of this, it is how prisma handles relationships between models 
-  // post: any time we delete a Post, delete all the comments on the post as well 
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade) 
   post   Post  @relation(fields: [postId], references: [id], onDelete: Cascade)
-  // parentId points to array of children 
-  // parent: if we delete the parent comment, delete all the children comment as well 
-  children Comment[] @relation("ParentChild") // we need to give each comment a name since there are two comments that we reference in this model  
-
-  //// should this be nullable !?!?!? children Commnent?[] 
+  children Comment[] @relation("ParentChild") 
 }
 
 model Like {
-  // onDelete because if we delete a user or a comment, get rid of all its associated likes 
   user  User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  // field : which field in Like table is referencing which id in Comment table 
-  // reference : whenever userId is equal to Comment id, they are linked ; FK relationship  
-  // links commentId with Comment.id 
   comment Comment @relation(fields: [commentId], references: [id], onDelete: Cascade)
   userId String
   commentId String
-  // this is a joint id. userId and commentId are both unique, because a user can only like a comment one time; 
-  // there can never be more than 1 like that has the same userId and the same commentId. 
-  // likeId is a combination of userId and commentId, and this guarantees that a user can never leave two likes 
-  // on the same comment  
   @@id([userId, commentId])
 }

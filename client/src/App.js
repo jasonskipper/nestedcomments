@@ -5,7 +5,6 @@ import { PostProvider } from "./contexts/PostContext"
 
 function App() {
   return (
-    // Routes & Route come from the react-router library  
     <div className="container">
       <Routes>
         <Route path="/" element={<PostList />} />
