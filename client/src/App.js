@@ -7,10 +7,20 @@ function App() {
   return (
     <div className="container">
       <Routes>
-        <Route path="/" element={<PostList />} />
-        <Route path="/posts/:id" element={<PostProvider>
-          <Post />
-        </PostProvider>} />
+        <Route 
+          path="/" 
+          element={
+            <PostList />
+          } 
+        />
+        <Route 
+          path="/posts/:id" 
+          element={
+            <PostProvider>
+              <Post />
+            </PostProvider>
+          } 
+        />
       </Routes>
     </div>
   )
