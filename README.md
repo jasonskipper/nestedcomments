@@ -205,8 +205,8 @@ Contributions are welcome! Please follow these steps:
 
 **Jason Skipper**
 
-- **Email**: [your.email@example.com](mailto:jasonskipper0831@gmail.com)
-- **GitHub**: [@your-username](https://github.com/jasonskipper)
-- **LinkedIn**: [Your Name](https://www.linkedin.com/in/jason-skipper)
+- **Email**: [jasonskipper0831@gmail.com](mailto:jasonskipper0831@gmail.com)
+- **GitHub**: [https://github.com/jasonskipper](https://github.com/jasonskipper)
+- **LinkedIn**: [https://www.linkedin.com/in/jason-skipper](https://www.linkedin.com/in/jason-skipper)
 
 ---
