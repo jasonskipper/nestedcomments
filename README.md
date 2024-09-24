@@ -206,12 +206,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 
-**Your Name**
+**Jason Skipper*
 
-- **Email**: [your.email@example.com](mailto:your.email@example.com)
-- **GitHub**: [@your-username](https://github.com/your-username)
-- **LinkedIn**: [Your Name](https://www.linkedin.com/in/your-profile)
+- **Email**: [your.email@example.com](mailto:jasonskipper0831@gmail.com)
+- **GitHub**: [@your-username](https://github.com/jasonskipper)
+- **LinkedIn**: [Your Name](https://www.linkedin.com/in/jason-skipper)
 
 ---
-
-_This README was generated with ❤️ by [Your Name](https://github.com/your-username)._
