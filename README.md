@@ -7,8 +7,6 @@
 
 A full-stack web application that replicates Reddit's infinitely nested comment system. This project demonstrates how to build a scalable and maintainable application using modern web technologies.
 
-![Screenshot](screenshot.png)
-
 ## 📚 Table of Contents
 
 - [Features](#-features)
