@@ -200,13 +200,10 @@ Contributions are welcome! Please follow these steps:
 
    Go to the original repository and click on "New Pull Request".
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 📞 Contact
 
-**Jason Skipper*
+**Jason Skipper**
 
 - **Email**: [your.email@example.com](mailto:jasonskipper0831@gmail.com)
 - **GitHub**: [@your-username](https://github.com/jasonskipper)
